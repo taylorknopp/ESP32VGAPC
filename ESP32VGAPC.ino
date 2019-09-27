@@ -1,4 +1,6 @@
+
 #include <SD.h>
+#include <SPI.h>
 #include <ESP32Lib.h>
 #include <Ressources/Font6x8.h>
 #include <Ressources/CodePage437_8x8.h>
@@ -9,9 +11,10 @@ const int greenPin = 19;
 const int bluePin = 27;
 const int hsyncPin = 32;
 const int vsyncPin = 33;
-const int numCommands = 3;
+const int numCommands = 4;
 int screenPos = 8;
-String commands[numCommands] ={"cls","edit","draw"};
+String commands[numCommands] ={"cls","edit","draw","list"};
+File root;
 
 
 //VGA Device
@@ -30,6 +33,7 @@ void setup()
   vga.print("free memory: ");
   vga.print((int)heap_caps_get_free_size(MALLOC_CAP_DEFAULT));
   vga.println();
+  root = SD.open("/");
 }
 
 void loop()
@@ -77,6 +81,10 @@ void drawScreen(char c)
         case 2:
         
           draw(command);
+          break;
+        case 3:
+        
+          list(root,0);
           break;
           
         default:
