@@ -141,4 +141,3 @@ void cls()
   vga.print("free memory: ");
   vga.println((int)heap_caps_get_free_size(MALLOC_CAP_DEFAULT));
 }
-
