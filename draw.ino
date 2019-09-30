@@ -2,13 +2,16 @@ void draw(String cmd)
 {
   int x = getValue(cmd,',',1).toInt();
   int y = getValue(cmd,',',2).toInt();
-  int r = getValue(cmd,',',3).toInt();
-  int g = getValue(cmd,',',4).toInt();
-  int b = getValue(cmd,',',5).toInt();
-  int SiseX = getValue(cmd,',',6).toInt();
-  int SiseY = getValue(cmd,',',7).toInt();
-  String shape = getValue(cmd,',',8);
-  int fillShape = getValue(cmd,',',9).toInt();
+  int x2 = getValue(cmd,',',3).toInt();
+  int y2 getValue(cmd,',',4).toInt();
+  int r = getValue(cmd,',',5).toInt();
+  int g = getValue(cmd,',',6).toInt();
+  int b = getValue(cmd,',',7).toInt();
+  int SiseX = getValue(cmd,',',8).toInt();
+  int SiseY = getValue(cmd,',',9).toInt();
+  String shape = getValue(cmd,',',10);
+  int fillShape = getValue(cmd,',',11).toInt();
+  
   Serial.print("x: " );
   Serial.print(x);
   Serial.print(" y: ");
@@ -52,7 +55,19 @@ void draw(String cmd)
       vga.fillCircle(x, y , SiseX/SiseY, vga.RGB(r, g, b));
     }
   }
-  
+  if(shape == "tringale")
+  {
+    if(fillshape == 0)
+    {
+      vga.line(x,y,x2,y2,vga.RGB(r, g, b))
+      vga.line(x,y,SiseX,SiseY,vga.RGB(r, g, b))
+      vga.line(SiseX,SiseY,x2,y2,vga.RGB(r, g, b))
+    }
+    else
+    {
+      
+    }
+  }
 }
 
 
