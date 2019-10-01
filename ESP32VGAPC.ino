@@ -13,7 +13,7 @@ const int hsyncPin = 32;
 const int vsyncPin = 33;
 const int numCommands = 4;
 int screenPos = 8;
-String commands[numCommands] ={"cls","edit","draw","list"};
+String commands[numCommands] ={"clear","edit","draw","list"};
 File root;
 
 
