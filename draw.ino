@@ -73,6 +73,7 @@ void draw(String cmd)
       vga.line(x,y,SiseX,SiseY,vga.RGB(r, g, b));
       vga.line(SiseX,SiseY,x2,y2,vga.RGB(r, g, b));
       int SxMax = x;
+      
       if(SxMax < x2)
       {
         SxMax = x2; 
@@ -111,7 +112,25 @@ void draw(String cmd)
       }
       int lineY1;
       int lineY2;
+
       
+      int m = abs((y - y1)/(x-x1));
+      int c = abs((y - y1))*m;
+      for(int x = x - x1; x <= x1; x++)
+      {
+        int y = m*x+c
+        Serial.print("Point: ");
+        Serial.print(x);
+        Serial.print(",");
+        Serial.print(y);
+        vga.line(x,y,SiseX,SiseY,vga.RGB(r, g, b));
+              
+      }
+      
+
+
+
+/*      
       
       for(int Px = SxMin; Px <= SxMax; Px++)
       {
@@ -138,7 +157,7 @@ void draw(String cmd)
         
       }
       vga.rect(SxMin, SyMin , SxMax - SxMin, SyMax - SyMin, vga.RGB(r, g, b));
-
+*/
 
       
       //Serial.print("Point 1: ");
@@ -186,4 +205,3 @@ bool getValueInTriangle(int Ax,int Ay, int Bx,int By, int Cx,int Cy, int Px, int
       double w2 = (s4- w1 * s3) / s1;
       return w1 >= 0 && w2 >= 0 && (w1 + w2) <= 1;
 }
-
