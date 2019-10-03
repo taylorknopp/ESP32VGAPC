@@ -16,7 +16,7 @@ void draw(String cmd)
   Serial.print(x);
   Serial.print(" y: ");
   Serial.print(y);
-  Serial.print("x2: " );
+  Serial.print(" x2: " );
   Serial.print(x2);
   Serial.print(" y2: ");
   Serial.print(y2);
@@ -110,22 +110,34 @@ void draw(String cmd)
       {
         SyMin = SiseY; 
       }
-      int lineY1;
-      int lineY2;
+
+
+      double dx = x2 - x;
+      double dy = y2 - y;
+      for( int px = x; px <= x2; px++)
+      {
+        double py = y + dy * (px - x) / dx;
+        vga.line(px,py,SiseX,SiseY,vga.RGB(r, g, b));
+      }
+      
 
       
-      int m = abs((y - y1)/(x-x1));
-      int c = abs((y - y1))*m;
-      for(int x = x - x1; x <= x1; x++)
+      /*double m = (double)(y2 - y)/(double)(x2-x);
+      double c = (double)(y2 - y)*m;
+      Serial.print(m);
+      Serial.print(",");
+      Serial.println(c);
+      for(int xForLoop = x; xForLoop <= x2; xForLoop++)
       {
-        int y = m*x+c
+        double yForLine = (double)m*xForLoop+c;
+        
         Serial.print("Point: ");
-        Serial.print(x);
+        Serial.print(xForLoop);
         Serial.print(",");
-        Serial.print(y);
-        vga.line(x,y,SiseX,SiseY,vga.RGB(r, g, b));
+        Serial.println(yForLine);
+        
               
-      }
+      }*/
       
 
 
