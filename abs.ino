@@ -1,5 +1,5 @@
 
-void abs(String cmd)
+void absNum(String cmd)
 {
   int value = getValue(cmd,',',1).toInt();
   vga.print(abs(value));

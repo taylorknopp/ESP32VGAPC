@@ -1,9 +1,11 @@
 
+
 #include <SD.h>
 #include <SPI.h>
 #include <ESP32Lib.h>
 #include <Ressources/Font6x8.h>
 #include <Ressources/CodePage437_8x8.h> 
+#include <math.h> 
 
 //pin configuration
 const int redPin = 14;
@@ -11,9 +13,9 @@ const int greenPin = 19;
 const int bluePin = 27;
 const int hsyncPin = 32;
 const int vsyncPin = 33;
-const int numCommands = 4;
+const int numCommands = 10;
 int screenPos = 8;
-String commands[numCommands] ={"clear","edit","draw","list"};
+String commands[numCommands] ={"clear","edit","draw","list","abs","asc","cos","sin","tan","sqrt"};
 File root;
 
 
@@ -86,6 +88,37 @@ void drawScreen(char c)
         
           list(root,0);
           break;
+          
+        case 4:
+        
+          absNum(command);
+          break;
+          
+        case 5:
+        
+          asc(command);
+          break;
+          
+        case 6:
+         
+          cosNum(command);
+          break;
+          
+        case 7:
+        
+          sinNum(command);
+          break;
+
+        case 8:
+        
+          tanNum(command);
+          break;
+
+        case 9:
+        
+          sqrtNum(command);
+          break;
+          
           
         default:
           
