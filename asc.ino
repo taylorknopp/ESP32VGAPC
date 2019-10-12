@@ -1,5 +1,5 @@
-void sc(string cmd)
+void asc(String cmd)
 {
-  char value[] = getValue(cmd,',',1);
-  vga.println(value[0]);
+  char val = getValue(cmd,',',1)[0];
+  vga.println(val);
 }
