@@ -1,3 +1,5 @@
+String getValue(String data, char separator, int index);
+bool getValueInTriangle(int Ax,int Ay, int Bx,int By, int Cx,int Cy, int Px, int Py);
 void draw(String cmd)
 {
   int x = getValue(cmd,',',1).toInt();

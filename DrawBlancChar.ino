@@ -1,12 +1,14 @@
 void drawBlancChar(int posX, int posY, int numCharToPrint)
 {
-  if(posX == -1)
-  {
-    vga.rect(-1,-1  , 8*numCharToPrint, 8, vga.RGB(0, 0, 0));
-  }
-  else
-  {
-    vga.rect(posX, posY , 8*numCharToPrint, 8, vga.RGB(0, 0, 0));
-  }
+ 
+    Serial.print(posX);
+    Serial.print(" ");
+    Serial.print(posY);
+    Serial.print(" ");
+    Serial.println(numCharToPrint);
+    vga.fillRect(posX, posY ,numCharToPrint*8 , 8, vga.RGB(0, 0, 0));
+    
+    
+  
   
 }

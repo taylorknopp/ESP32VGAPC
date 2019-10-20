@@ -1,6 +1,13 @@
 void tanNum(String cmd)
 {
-  float x = getValue(cmd,',',1).toInt();
-  float out = tan(x);
-  vga.println(out);
+  float x = (float)getValue(cmd,',',1).toInt();
+  float out = (tan(x*0.0174533));
+
+  char result[8]; // Buffer big enough for 7-character float
+  dtostrf(out, 6, 2, result); // Leave room for too large numbers!
+  
+  Serial.println(out);
+  vga.println("");
+  vga.println(result);
+  
 }
