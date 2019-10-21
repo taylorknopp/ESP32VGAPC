@@ -1,4 +1,4 @@
-#include <PS2Kbd.h>
+//#include <PS2Kbd.h>
 #include <ESP32Lib.h>
 #include <SD.h>
 #include <SPI.h>
@@ -40,6 +40,7 @@ void splash();
 
 
 //VGA Device
+
 VGA3BitI vga;
 char incomingByte = ' ';
 String command = "";
