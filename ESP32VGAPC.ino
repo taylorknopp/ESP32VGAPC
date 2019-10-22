@@ -5,15 +5,16 @@
 #include <Ressources/Font6x8.h>
 #include <Ressources/CodePage437_8x8.h> 
 #include <math.h> 
+
 #define KEYBOARD_DATA 35
 #define KEYBOARD_CLK  34
 
 //pin configuration
- int redPin = 14;
- int greenPin = 19;
- int bluePin = 27;
- int hsyncPin = 32;
- int vsyncPin = 33;
+int redPin = 14;
+int greenPin = 19;
+int bluePin = 27;
+int hsyncPin = 32;
+int vsyncPin = 33;
 const int numCommands = 10;
 int screenPos = 8;
 String commands[numCommands] ={"clear","edit","draw","list","abs","asc","cos","sin","tan","sqrt"};

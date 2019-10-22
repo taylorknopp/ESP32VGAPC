@@ -22531,8 +22531,23 @@ void splash()
       //vga.fillRect(y, x , 1, 1, vga.RGB(r, g, b));
       
       vga.dot(xPos,yPos,vga.RGB(r, g, b));
+      
     
   }
+  unsigned int D6 = 1174;
+  unsigned int D5 = 587;
+  unsigned int A6 = 1760;
+  unsigned int A5 = 880;
+  unsigned int G5 = 784;
+
+/*  tone(5, D6,1200);
+  tone(5, D5,240);
+  tone(5, A5,720);
+  tone(5, G5,720);
+  tone(5, D5,960);
+  tone(5, D6,720);
+  tone(5, A6,1200);*/
+  
 }
 
  
