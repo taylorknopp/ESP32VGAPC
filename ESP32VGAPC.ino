@@ -3,8 +3,9 @@
 #include <SD.h>
 #include <SPI.h>
 #include <Ressources/Font6x8.h>
-#include <Ressources/CodePage437_8x8.h> 
-#include <math.h> 
+#include <Ressources/CodePage437_8x8.h>
+#include <math.h>
+
 #define KEYBOARD_DATA 35
 #define KEYBOARD_CLK  34
 
@@ -81,8 +82,8 @@ void loop()
     // say what you got:
     drawScreen(incomingByte);
     //vga.print("I received: ");
-    
-   
+
+
   }
   /*if (keyboard.available()) {
     // read the incoming byte:
@@ -91,10 +92,10 @@ void loop()
     // say what you got:
     drawScreen(incomingByte);
     //vga.print("I received: ");
-    
-   
+
+
   }*/
-  
+
 }
 
 
@@ -102,7 +103,7 @@ void drawScreen(char c)
 {
     if(c == '\r' )
     {
-      
+
 
 
 
@@ -114,61 +115,61 @@ void drawScreen(char c)
       Serial.println(ind);
       switch (ind) {
         case 0:
-          
-        
+
+
           cls();
           break;
-          
+
         case 1:
-        
+
           edit("test.txt");
           break;
 
         case 2:
-        
+
           draw(command);
           break;
         case 3:
-        
+
           list(root,0);
           break;
-          
+
         case 4:
-        
+
           absNum(command);
           break;
-          
+
         case 5:
-        
+
           asc(command);
           break;
-          
+
         case 6:
-         
+
           cosNum(command);
           screenPos += 8;
           break;
-          
+
         case 7:
-        
+
           sinNum(command);
           screenPos += 8;
           break;
 
         case 8:
-        
+
           tanNum(command);
           screenPos += 8;
           break;
 
         case 9:
-        
+
           sqrtNum(command);
           break;
-          
-          
+
+
         default:
-          
+
           // statements
           break;
           printMem();
@@ -187,10 +188,10 @@ void drawScreen(char c)
 
 
 
-    
 
-    
-    
+
+
+
   }
   else
   {
@@ -199,28 +200,28 @@ void drawScreen(char c)
       if(command.length() > 0)
       {
         Serial.println("BackSpcae");
-      
+
         command.remove(command.length() - 1);
         int xpos = (command.length()*8);
         drawBlancChar(xpos,screenPos, 1);
         vga.setCursor(xpos, screenPos);
-        
+
       }
-      
+
     }
     else
     {
       vga.print(c);
       command += c;
     }
-    
+
   }
-  
+
 }
 
 int IndexOfSringInArray(String ary[], String val)
 {
-  
+
   int wantedPos = -1;
   for (int i=0; i<numCommands; i++) {
     Serial.println(val.indexOf(ary[i]));
