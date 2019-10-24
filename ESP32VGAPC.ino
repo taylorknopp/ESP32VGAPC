@@ -9,11 +9,19 @@
 #define KEYBOARD_CLK  34
 
 //pin configuration
- int redPin = 14;
- int greenPin = 19;
- int bluePin = 27;
- int hsyncPin = 32;
- int vsyncPin = 33;
+
+const int redPins[] = {2, 4, 12, 13, 14};
+const int greenPins[] = {15, 16, 17, 18, 19};
+const int bluePins[] = {21, 22, 23, 27};
+const int hsyncPin = 32;
+const int vsyncPin = 33;
+
+
+// int redPin = 14;
+// int greenPin = 19;
+// int bluePin = 27;
+// int hsyncPin = 32;
+// int vsyncPin = 33;
 const int numCommands = 10;
 int screenPos = 8;
 String commands[numCommands] ={"clear","edit","draw","list","abs","asc","cos","sin","tan","sqrt"};
@@ -41,7 +49,8 @@ void splash();
 
 //VGA Device
 
-VGA3BitI vga;
+//VGA3BitI vga;
+VGA14Bit vga;
 char incomingByte = ' ';
 String command = "";
 void setup()
@@ -49,7 +58,8 @@ void setup()
   Serial.begin(115200);
 	//initializing vga at the specified pins
   Mode myMode = vga.MODE1024x768.custom(600, 320);
-	vga.init(myMode, redPin, greenPin, bluePin, hsyncPin, vsyncPin);
+  vga.init(vga.MODE200x150, redPins, greenPins, bluePins, hsyncPin, vsyncPin);
+	//vga.init(myMode, redPin, greenPin, bluePin, hsyncPin, vsyncPin);
 	//selecting the font
 	vga.setFont(CodePage437_8x8);
 	//displaying the text
