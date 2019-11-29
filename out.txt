@@ -1,13 +1,4 @@
-struct RGBobj {
-  byte r;
-  byte g;
-  byte b;
-  byte x;
-  byte y;
-};
-
-const RGBobj img[65025] = {
- {byte(98),byte(118),byte(130),double(0),double(0)},
+{byte(98),byte(118),byte(130),double(0),double(0)},
 {byte(98),byte(118),byte(130),double(1),double(0)},
 {byte(98),byte(118),byte(130),double(2),double(0)},
 {byte(98),byte(118),byte(130),double(3),double(0)},
@@ -65031,51 +65022,4 @@ const RGBobj img[65025] = {
 {byte(98),byte(118),byte(130),double(251),double(254)},
 {byte(98),byte(118),byte(130),double(252),double(254)},
 {byte(98),byte(118),byte(130),double(253),double(254)},
-{byte(98),byte(118),byte(130),double(254),double(254)}
-  };
- 
-void splash()
-{
-   tone(buzzerPin, NOTE_D5,600,0);
-   noTone(buzzerPin,0);
-   tone(buzzerPin, NOTE_D4,120,0);
-   noTone(buzzerPin,0);
-   tone(buzzerPin, NOTE_A4,360,0);
-   noTone(buzzerPin,0);
-   tone(buzzerPin, NOTE_G4,360,0);
-   noTone(buzzerPin,0);
-   tone(buzzerPin, NOTE_D4,480,0);
-   noTone(buzzerPin,0);
-   tone(buzzerPin, NOTE_D5,360,0);
-   noTone(buzzerPin,0);
-   tone(buzzerPin, NOTE_A4,600,0);
-  for(int x = 0; x < 65025; x++)
-  {
-    
-      int r = img[x].r;
-      int g = img[x].g;
-      int b = img[x].b;
-      int xPos = img[x].x + 72;
-      int yPos = img[x].y + 25;
-      
-      
-     if(r < 100)
-     {
-       ///Serial.println((String)r + " " + (String)g + " " + (String)b);
-      //Serial.println((String)x);
-      
-     }
-     
-      
-      vga.dotFast(xPos,yPos,vga.RGB(r, g, b));
-      
-    
-  }
-  
-
-
-
-  
-}
-
- 
+{byte(98),byte(118),byte(130),double(254),double(254)},

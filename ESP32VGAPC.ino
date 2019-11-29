@@ -1,4 +1,7 @@
+#include <pitches.h>
 #include <Tone32.h>
+
+
 #include <pitches.h>
 
 
@@ -19,20 +22,20 @@
 //pin configuration
 
 const int redPins[] = {2, 4, 12, 13, 14};
-const int greenPins[] = {15, 16, 17, 18, 19};
+const int greenPins[] = {15, 16, 17, 5, 18};
 const int bluePins[] = {21, 22, 23, 27};
 const int hsyncPin = 32;
 const int vsyncPin = 33;
-
+const int buzzerPin = 19;
 
 // int redPin = 14;
 // int greenPin = 19;
 // int bluePin = 27;
 // int hsyncPin = 32;
 // int vsyncPin = 33;
-const int numCommands = 10;
+const int numCommands = 11;
 int screenPos = 8;
-String commands[numCommands] ={"clear","edit","draw","list","abs","asc","cos","sin","tan","sqrt"};
+String commands[numCommands] ={"clear","edit","draw","list","abs","asc","cos","sin","tan","sqrt","splash"};
 File root;
 
 
@@ -58,15 +61,15 @@ void splash();
 //VGA Device
 
 //VGA3BitI vga;
-VGA14Bit vga;
+VGA14BitI vga;
 char incomingByte = ' ';
 String command = "";
 void setup()
 {
   Serial.begin(115200);
 	//initializing vga at the specified pins
-  Mode myMode = vga.MODE1024x768.custom(600, 320);
-  vga.init(vga.MODE200x150, redPins, greenPins, bluePins, hsyncPin, vsyncPin);
+  Mode myMode = vga.MODE400x300;
+  vga.init(myMode, redPins, greenPins, bluePins, hsyncPin, vsyncPin);
 	//vga.init(myMode, redPin, greenPin, bluePin, hsyncPin, vsyncPin);
 	//selecting the font
 	vga.setFont(CodePage437_8x8);
@@ -76,8 +79,10 @@ void setup()
    vga.print(" Bytes");
   vga.println();
   root = SD.open("/");
-  splash();
+  
   //keyboard.begin();
+  pinMode(buzzerPin,OUTPUT);
+  splash();
 }
 
 void loop()
@@ -120,6 +125,8 @@ void drawScreen(char c)
 
       int ind = IndexOfSringInArray(commands,command);
       Serial.println(ind);
+      
+      
       switch (ind) {
         case 0:
 
@@ -173,6 +180,10 @@ void drawScreen(char c)
 
           sqrtNum(command);
           break;
+        case 10:
+
+          splash();
+          break;
 
 
         default:
@@ -181,6 +192,7 @@ void drawScreen(char c)
           break;
           printMem();
   }
+  
   command = "";
   screenPos+= 8;
   vga.setCursor(0, screenPos);
@@ -202,7 +214,7 @@ void drawScreen(char c)
   }
   else
   {
-    if(c == '\b')
+    if(c == 127 || c == 8)
     {
       if(command.length() > 0)
       {
@@ -223,6 +235,7 @@ void drawScreen(char c)
     }
 
   }
+  
 
 }
 
