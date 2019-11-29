@@ -8,7 +8,7 @@
 
 
 
-//#include <PS2Kbd.h>
+#include <PS2Kbd.h>
 #include <ESP32Lib.h>
 #include <SD.h>
 #include <SPI.h>
@@ -33,13 +33,13 @@ const int buzzerPin = 19;
 // int bluePin = 27;
 // int hsyncPin = 32;
 // int vsyncPin = 33;
-const int numCommands = 11;
+const int numCommands = 12;
 int screenPos = 8;
-String commands[numCommands] ={"clear","edit","draw","list","abs","asc","cos","sin","tan","sqrt","splash"};
+String commands[numCommands] ={"clear","edit","draw","list","abs","asc","cos","sin","tan","sqrt","splash","tone"};
 File root;
 
 
-//PS2Kbd keyboard(KEYBOARD_DATA, KEYBOARD_CLK);
+PS2Kbd keyboard(KEYBOARD_DATA, KEYBOARD_CLK);
 void drawScreen(char c);
 int IndexOfSringInArray(String ary[], String val);
 void cls();
@@ -56,6 +56,7 @@ String getValue(String data, char separator, int index);
 void printMem();
 void drawBlancChar(int posX, int posY, int numCharToPrint);
 void splash();
+void playTone(String cmd);
 
 
 //VGA Device
@@ -80,7 +81,7 @@ void setup()
   vga.println();
   root = SD.open("/");
   
-  //keyboard.begin();
+  keyboard.begin();
   pinMode(buzzerPin,OUTPUT);
   splash();
 }
@@ -97,7 +98,7 @@ void loop()
 
 
   }
-  /*if (keyboard.available()) {
+  if (keyboard.available()) {
     // read the incoming byte:
     incomingByte = keyboard.read();
 
@@ -106,7 +107,7 @@ void loop()
     //vga.print("I received: ");
 
 
-  }*/
+  }
 
 }
 
@@ -183,6 +184,10 @@ void drawScreen(char c)
         case 10:
 
           splash();
+          break;
+          case 11:
+
+          playTone(command);
           break;
 
 
